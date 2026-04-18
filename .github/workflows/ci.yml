@@ -32,7 +32,7 @@ jobs:
         run: ./scripts/package-extension.ps1
 
       - name: Upload dist artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: imposto-brasil-extensao-dist
           path: dist/imposto-brasil-chrome-web-store.zip
