@@ -1,0 +1,46 @@
+name: Publish Package
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: "@mastiico"
+
+      - name: Validate tag against manifest version
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}".TrimStart("v")
+          $manifestVersion = (Get-Content manifest.json | ConvertFrom-Json).version
+          if ($tag -ne $manifestVersion) {
+            throw "A tag $tag nao corresponde ao manifest version $manifestVersion"
+          }
+
+      - name: Set package version from tag
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          npm version "${VERSION}" --no-git-tag-version
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish

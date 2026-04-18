@@ -31,6 +31,14 @@ Para gerar o pacote da extensao:
 .\scripts\package-extension.ps1
 ```
 
+## Fluxo open source
+
+- contribuicoes via pull request;
+- `main` protegida para evitar pushes diretos;
+- build automatico no GitHub Actions;
+- release com zip versionado a partir de tags `v*`;
+- publicacao do pacote fonte via GitHub Packages.
+
 ## Documentacao
 
 - [Privacidade](./docs/privacy.md)

@@ -1,0 +1,31 @@
+{
+  "name": "@mastiico/imposto-brasil-extensao",
+  "version": "1.1.0",
+  "description": "Extensao para Chrome que estima impostos em produtos do Mercado Livre e gera distribuicoes para release.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mastiico/imposto-brasil-extensao.git"
+  },
+  "homepage": "https://github.com/mastiico/imposto-brasil-extensao",
+  "bugs": {
+    "url": "https://github.com/mastiico/imposto-brasil-extensao/issues"
+  },
+  "files": [
+    "assets",
+    "content",
+    "docs",
+    "IBPT",
+    "manifest.json",
+    "overlay.css",
+    "popup.html",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "package:extension": "pwsh -File ./scripts/package-extension.ps1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

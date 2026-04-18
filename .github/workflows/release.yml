@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate tag against manifest version
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}".TrimStart("v")
+          $manifestVersion = (Get-Content manifest.json | ConvertFrom-Json).version
+          if ($tag -ne $manifestVersion) {
+            throw "A tag $tag nao corresponde ao manifest version $manifestVersion"
+          }
+
+      - name: Build extension package
+        shell: pwsh
+        run: ./scripts/package-extension.ps1
+
+      - name: Prepare release assets
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          ZIP_NAME="imposto-brasil-extensao-${VERSION}.zip"
+          cp dist/imposto-brasil-chrome-web-store.zip "dist/${ZIP_NAME}"
+          sha256sum "dist/${ZIP_NAME}" > "dist/${ZIP_NAME}.sha256"
+
+      - name: Create GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          ZIP_NAME="imposto-brasil-extensao-${VERSION}.zip"
+          gh release create "${GITHUB_REF_NAME}" \
+            "dist/${ZIP_NAME}" \
+            "dist/${ZIP_NAME}.sha256" \
+            --generate-notes \
+            --title "Imposto Brasil ${GITHUB_REF_NAME}"
