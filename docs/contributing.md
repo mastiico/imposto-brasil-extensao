@@ -11,7 +11,7 @@ Obrigado por querer contribuir com o `Imposto Brasil`.
 
 ## Fluxo recomendado
 
-1. Faça um fork do repositorio.
+1. Faca um fork do repositorio.
 2. Crie uma branch para a sua mudanca.
 3. Implemente a correcao ou melhoria.
 4. Atualize a documentacao quando necessario.
@@ -34,6 +34,29 @@ Obrigado por querer contribuir com o `Imposto Brasil`.
 - nao adicione permissoes sem justificativa forte;
 - nao introduza coleta de dados fora do proposito central da extensao;
 - mantenha compatibilidade com Manifest V3.
+
+## Commits
+
+Use mensagens curtas e com prefixo padrao.
+
+Prefixos recomendados:
+
+- `feat:` para nova funcionalidade;
+- `fix:` para correcao de bug;
+- `docs:` para documentacao;
+- `chore:` para manutencao e ajustes internos;
+- `refactor:` para reorganizacao de codigo sem mudar comportamento;
+- `ci:` para GitHub Actions e automacao;
+- `test:` para testes.
+
+Exemplos bons:
+
+- `feat: overlay ibpt`
+- `fix: amazon fallback`
+- `docs: commit pattern`
+- `chore: clean release flow`
+
+Evite mensagens longas, genericas ou vagas.
 
 ## Discussao de produto
 
