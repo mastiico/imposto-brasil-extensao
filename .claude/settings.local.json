@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo *)",
+      "Bash(curl -s https://raw.githubusercontent.com/JuliusBrussee/caveman/main/README.md)",
+      "Bash(claude plugin *)",
+      "Read(//c/Users/marcio.filho/.claude/**)",
+      "Read(//c/Users/marcio.filho/.claude/plugins/**)",
+      "Bash(where.exe claude *)",
+      "Read(//c/Users/marcio.filho/AppData/**)",
+      "Bash(\"/c/Users/marcio.filho/AppData/Roaming/Claude/claude-code/2.1.111/claude.exe\" plugin *)",
+      "Bash(CLAUDE_CODE_GIT_BASH_PATH=\"C:\\\\\\\\Users\\\\\\\\marcio.filho\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Programs\\\\\\\\Git\\\\\\\\bin\\\\\\\\bash.exe\" \"/c/Users/marcio.filho/AppData/Roaming/Claude/claude-code/2.1.111/claude.exe\" plugin install caveman@caveman)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
+    ]
+  }
+}

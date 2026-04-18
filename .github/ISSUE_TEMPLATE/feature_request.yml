@@ -1,0 +1,27 @@
+name: Feature request
+description: Sugira uma melhoria para a extensao ou para o fluxo open source
+title: "[feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema ou oportunidade
+      description: Que necessidade essa feature resolve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposta
+      description: Como voce imagina a solucao?
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Contexto adicional
+      description: Referencias, links, prints ou tradeoffs.
