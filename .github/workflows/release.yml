@@ -1,0 +1,29 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: build zip
+        shell: pwsh
+        run: ./scripts/package-extension.ps1
+
+      - name: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          cp dist/imposto-brasil-chrome-web-store.zip "dist/imposto-brasil-${version}.zip"
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/imposto-brasil-${version}.zip" \
+            --generate-notes
